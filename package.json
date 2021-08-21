@@ -1,0 +1,12 @@
+{
+  "name": "pending-deposit-request",
+  "version": "1.0.0",
+  "description": "Example of creating a function that runs as a cron job using the serverless `schedule` event through pulling weather and sending an email daily.",
+  "author": "it+developer@abx.com.au",
+  "license": "MIT",
+  "dependencies": {
+    "@abx/logging-utils": "^1.1.1",
+    "aws-sdk": "^2.973.0",
+    "pg": "^8.7.1"
+  }
+}

@@ -1,0 +1,5 @@
+export const SELECT_PENDING_DEPOSIT_REQUESTS =
+  'select da."accountId", dr.id, da."currencyId", da.address, c.code, dr.amount, dr.status, da."publicKey",  dr."depositTxHash", dr."holdingsTxHash", dr."holdingsTxFee", a.hin, dr."createdAt", dr."updatedAt" from account a join deposit_address da on da."accountId" = a."id" join currency c on da."currencyId" = c.id join deposit_request dr on dr."depositAddressId" = da.id where dr.status not in (\'completed\') and dr."updatedAt" > CURRENT_DATE - INTERVAL \'1 hour\'';
+
+export const SELECT_PENDING_WITHDRAWALS =
+  'select wr.id, a.hin, a.id as "accountId", wr."type", wr.state, c.code, wr."createdAt", wr."updatedAt", wr.amount, wr.address, wr."txHash" from withdrawal_request as wr join "user" as u on wr."accountId"=u."accountId" join "account" as a on wr."accountId"=a.id join currency as c on wr."currencyId"=c.id left join "admin_request" as ar on wr."adminRequestId"=ar.id join salesforce as s on s."accountId"=a.id where wr."type" = \'withdrawal\' and wr.state not in (\'completed\') and wr."updatedAt" > CURRENT_DATE - INTERVAL \'1 hour\'';
